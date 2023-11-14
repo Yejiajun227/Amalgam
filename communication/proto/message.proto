@@ -1,0 +1,22 @@
+syntax = "proto3";
+// compile .proto file
+// python -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. message.proto
+message RequestBody {
+  string src = 1;
+  string dst = 2;
+  int32 type = 3;
+  string key = 4;
+  bytes python_bytes = 6;
+}
+
+
+message Response{
+  string status = 1;
+}
+
+
+service ServerService
+{
+  rpc SayHi (RequestBody) returns (Response) {}
+  rpc PushData(RequestBody) returns (Response) {}
+}
